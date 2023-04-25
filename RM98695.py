@@ -1,4 +1,3 @@
-
 import json
 import requests
 
@@ -27,16 +26,16 @@ while encerrar == '1':
                 print(f'Obtemos o conteúdo da URL: {url}')
         except requests.exceptions.RequestException as e:
             print(f"Não foi possível obter o conteúdo da URL: {url}")
+
     while True:
         encerrar = input('\nCaso queira encerrar:\n' 
                         'Digite 1 -> Tentar outro RM.\n'
                         'Digite 2 -> Encerrar\n')
-        if encerrar == '2':
+        if encerrar == '1':
+            break
+        elif encerrar == '2':
             print(f'\nObrigado por usar nosso sistema de consulta JSON!')
             break
         elif encerrar != '1':
-            print(f'\nInformação inválida, digite 1 ou 2!')
-
-
-
+            print(f'\nInformação inválida, digite 1 ou 2!') 
 
