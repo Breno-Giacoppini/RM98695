@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 
 encerrar = '1'
@@ -18,12 +19,16 @@ while encerrar == '1':
 
     print(f'\nForam encontradas {len(urls_rm)} URLs correspondentes ao RM {rm}:\n')
 
+    # Criar pasta com nome do RM
+    rm_folder = f'RM_{rm}'
+    os.makedirs(rm_folder, exist_ok=True)
+
     for url in urls_rm:
         try:
             response = requests.get(f"https://{url}")
-            with open(f"{url}.html", 'w', encoding='utf-8') as f:
+            with open(os.path.join(rm_folder, f"{url}.html"), 'w', encoding='utf-8') as f:
                 f.write(response.text)
-                print(f'Obtemos o conteúdo da URL: {url}')
+                print(f'Obtemos o conteúdo da URL: {url} e salvamos em {rm_folder}')
         except requests.exceptions.RequestException as e:
             print(f"Não foi possível obter o conteúdo da URL: {url}")
 
@@ -37,5 +42,4 @@ while encerrar == '1':
             print(f'\nObrigado por usar nosso sistema de consulta JSON!')
             break
         elif encerrar != '1':
-            print(f'\nInformação inválida, digite 1 ou 2!') 
-
+            print(f'\nInformação inválida, digite 1 ou 2!')
